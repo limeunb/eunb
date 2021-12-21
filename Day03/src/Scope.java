@@ -13,4 +13,11 @@ public class Scope {
 	
         // å 45P
         
+        
+        
+        
+        public static void pruntName() {
+        	
+        }
+        }
 
