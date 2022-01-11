@@ -6,6 +6,7 @@ import java.net.URL;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 
 
@@ -32,7 +33,7 @@ public class NaverPriceAPP {
      maxPrice=  Integer.parseInt(args[2]);
 	 } catch(NumberFormatException ne) {
 		 System.out.println ("사용법 > java NaverPriceAPP 상품명 최소가격 최대가격");
-		 System.out.println ("ex > java NaverPriceAPP 아이패드 50000 1000000");
+		 System.out.println ("ex > java NaverPriceAPP 아이패드 500000 10000000");
 		 
 	     	// return;
 	       } catch(ArrayIndexOutOfBoundsException ae) {
@@ -45,7 +46,7 @@ public class NaverPriceAPP {
 			 System.out.println("왜!! 틀리는거");
 		 
 	 }
-	 	String URL = "https://search.shopping.naver.com/search/all?maxPrice=50000&minPrice=10000&query=아이패드&sort=price_asc";
+	 	String URL = "https://search.shopping.naver.com/search/all?maxPrice=500000&minPrice=1000000&query=아이패드&sort=price_asc";
 	 	URL = String.format(URL, maxPrice, minPrice,goodsName);
 	 	 System.out.println(URL);
 //         String html = getHtml(URL);
@@ -54,12 +55,18 @@ public class NaverPriceAPP {
 	 	//getHtmlByJsoup(URL);
  }
   
-        private static void getHtmlByJsoup(String pUrl) throws  Exception {
+        private static void getHtmlByJsoup(String pUrl) throws Exception {
         	
         	Connection conn =Jsoup.connect(pUrl);
         	Document html =conn.get();
-        	System.out.println(html.toString());
+        	//System.out.println(html.toString());
         	
+        	Elements files = html.select(".list_basis");
+            System.out.println(files.size());
+            for(int i =0; i < files.size(); i++) {
+            	System.out.println(files.get(i));
+            }
+            
         }
  
 	 	 private static String getHtml(String pUrl) throws Exception {
