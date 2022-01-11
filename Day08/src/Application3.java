@@ -7,6 +7,11 @@ public class Application3 {
 		MathExample math = new MathExample();
 	    int sum = math.plus(10,20);
 	    System.out.println(sum);
+	    
+	    //Stack 구조 Last In First out (LIFO)
+	    System.out.println(math.minus(math.plus(10, 20),100));
+
+
 	}
 }
 
